@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Museums, Aquariums, and Zoos of the United States</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="http://d3js.org/d3.v7.min.js"></script>
+  <script src="https://cdn.plot.ly/plotly-2.27.0.min.js" charset="utf-8"></script>
+</head>
+
+<body>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 jumbotron text-center">
+        <h1>Museums, Aquariums, and Zoos of the United States</h1>
+        <p>Click on the map below to go on a virtual tour!</p>
+        <p>Or explore each state in depth with the featured graphs :)</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class ="banner text-center">
+        <a href = "js/myMap.html"><img src="mapBanner.png" class="img-responsive center-block"></a>
+      </div> <br>
+      <div class="col-md-2">
+        <div class="well">
+          <h5>Select a State:</h5>
+          <select id="selDataset" onchange="optionChanged(this.value)"></select>
+      </div>
+      <div class="col-md-5">
+        <div id="bar"></div>
+      </div>
+      <div class="col-md-5">
+        <div id="pie"></div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div id="bubble"></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  <script src="js/Charts.js"></script>
+
+</body>
+
+</html>
