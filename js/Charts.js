@@ -47,7 +47,7 @@ function optionChanged(selectedState)
         {
           //If there is a value in the revenue property, append that value
           //to the dictionary with the key being the "Museum Name"
-          if(data.hasOwnProperty(data[i].Revenue)){
+          if(data[i].hasOwnProperty('Revenue')){
                 
             Revenues[data[i].Museum_Name] = data[i].Revenue;
 
@@ -61,7 +61,7 @@ function optionChanged(selectedState)
              }
         }
     }
-
+    console.log(Revenues);
     
 
      // Sourced from a Stack Overflow board to sort the dictionary by the key (revenue) values 
@@ -77,17 +77,18 @@ function optionChanged(selectedState)
     let top10 = revSort.slice(0,10);
     let top10Revenues = top10.map(entry => entry[1]);
     let top10Names = top10.map(entry => entry[0]);
-    console.log(top10);
+    console.log(top10Names);
     
     let count = [];
     let categories = [];
     for (let key in typeCount) {
         categories.push(key);
-        count.push(typeCount[key]/typeCount.length);
+        count.push(typeCount[key]);
     }
-    console.log(typeCount.length);
+    console.log(count);
     //Runs the BarChart function, which displays a new plot for each new selection on the dropdown menu
     refreshBarChart(top10Revenues, top10Names);
+    refreshPieChart(count, categories);
 }
 
 function refreshBarChart(top10Revenues, top10Names)
@@ -128,7 +129,6 @@ function refreshPieChart(count, categories)
         //height: 400,
         //width: 500
       };
-      Plotly.newPlot('pie', data, layout);
-
+      Plotly.newPlot('pie', data, layout, {displayModeBar: true});
 }
   
