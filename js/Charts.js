@@ -2,9 +2,6 @@
 let data;
 let States = [];
 
-//Refer to the dropdown menu from the index.html file
-var select = d3.select("#selDataset");
-
 //Connect to the JSON file
 d3.json("../Project_3_Museums_2.json").then(jsonData => {
     data = jsonData;
@@ -19,20 +16,28 @@ d3.json("../Project_3_Museums_2.json").then(jsonData => {
 
     }
     
-    //Sort the states by ascending alphabetical order 
-    States.sort();
+    //Run function that will add each state in the list to the dropdown menu in
+    //ascending order
+    loadDropdown();
 
+    //Run function that will accept the selected state from the dropdown menu
+    //and build and display the respective charts on the dashboard
+    optionChanged(States[0]);
+});
+
+function loadDropdown()
+{
+    //Sort the states by ascending alphabetical order
+    States.sort();
+    //Refer to the dropdown menu from the index.html file
+    var select = d3.select("#selDataset");
     //Add each state in the list to the dropdown menu
     States.forEach((state) => {
         select.append("option")
         .text(state)
         .property("value", state);
     });
-
-    //RUn function that will accept the selected state from the dropdown menu
-    //and build and display the respective charts on the dashboard
-    optionChanged(States[0]);
-});
+}
 
 function optionChanged(selectedState)
 {
