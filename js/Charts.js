@@ -88,8 +88,8 @@ function optionChanged(selectedState)
     //and split the dictionary into two different arrays
     let top10 = revSort.slice(0,10);
     let top10Revenues = top10.map(entry => entry[1]);
-    let top10Names = top10.map(entry => entry[0]);
-    console.log(top10);
+    var top10Names = top10.map(entry => entry[0]);
+    //console.log(top10Names);
     
     let count = [];
     let categories = [];
@@ -103,14 +103,57 @@ function optionChanged(selectedState)
     refreshPieChart(count, categories);
 }
 
+function BarColor(top10Names)
+{
+
+  let NCES;
+  let colors =[];
+
+  for(var i=0; i<top10Names.length; i++)
+  {
+    for(let j=0; j<data.length; j++)
+    {
+      if(top10Names[i] == data[j].Museum_Name)
+      {
+        NCES = data[j].Locale_Code;
+      }
+    }
+  
+  if(NCES == 1)
+  {
+    colors.push('rgb(0,0,0)');
+  } 
+  else if(NCES == 2)
+  {
+    colors.push('rgb(158,202,225)');
+  }
+  else if(NCES==3)
+  {
+    colors.push('rgba(58,200,225,.5)');
+  }
+  else
+  {
+    colors.push('rgb(0,128,0)');
+  }
+}
+return colors;
+
+}
+
+
 function refreshBarChart(top10Revenues, top10Names)
 {
+  //console.log(top10Names);
+  var colour = BarColor(top10Names);
+  //console.log(color);
     var data = [{
         y: top10Revenues, 
           x: top10Names,
           text: top10Names,
           type: 'bar',
-          orientation: 'v',
+          marker: {
+          color: colour
+          },
           //The snippet of code falling under "transforms", which orders the bar chart in ascending order, 
           //was sourced from community.plotly.com
           transforms: [{
