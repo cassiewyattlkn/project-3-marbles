@@ -9,6 +9,13 @@ d3.json("../Project_3_Museums_2.json").then(jsonData => {
     for (let i = 0; i < data.length; i++) {
       
       let current = data[i];
+
+      //Flatten the "Revenue" property if it contans a nested "$numberLong"
+      //to ease access in later functions
+      if (current.hasOwnProperty('Revenue') && current.Revenue.hasOwnProperty('$numberLong')) {
+        current.Revenue = current.Revenue.$numberLong;
+        delete current.Revenue.$numberLong;
+      }
       //if the state is not already in the States list, then add the state
       if (!States.includes(current.State)) {
         States.push(current.State);
@@ -66,7 +73,7 @@ function optionChanged(selectedState)
              }
         }
     }
-    console.log(Revenues);
+    //console.log(Revenues);
     
 
      // Sourced from a Stack Overflow board to sort the dictionary by the key (revenue) values 
@@ -82,7 +89,7 @@ function optionChanged(selectedState)
     let top10 = revSort.slice(0,10);
     let top10Revenues = top10.map(entry => entry[1]);
     let top10Names = top10.map(entry => entry[0]);
-    console.log(top10Names);
+    console.log(top10);
     
     let count = [];
     let categories = [];
@@ -90,7 +97,7 @@ function optionChanged(selectedState)
         categories.push(key);
         count.push(typeCount[key]);
     }
-    console.log(count);
+    //console.log(count);
     //Runs the BarChart function, which displays a new plot for each new selection on the dropdown menu
     refreshBarChart(top10Revenues, top10Names);
     refreshPieChart(count, categories);
@@ -115,7 +122,8 @@ function refreshBarChart(top10Revenues, top10Names)
 
     var layout = {
         title: 'Visitors Top 10',
-        showlegend: false};
+        showlegend: false
+      };
 
     //Displays the Bar Chart 
     Plotly.newPlot('bar', data, layout, {displayModeBar: true});
@@ -130,9 +138,7 @@ function refreshPieChart(count, categories)
       }];
       
       var layout = {
-        title: 'Filler'
-        //height: 400,
-        //width: 500
+        title: 'Museum Type Breakdown'
       };
       Plotly.newPlot('pie', data, layout, {displayModeBar: true});
 }

@@ -9,6 +9,12 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="http://d3js.org/d3.v7.min.js"></script>
   <script src="https://cdn.plot.ly/plotly-2.27.0.min.js" charset="utf-8"></script>
+  <style>
+    #bar, #pie {
+        width: 1100px; /* Adjust width as needed */
+        height: 600px; /* Adjust height as needed */
+    }
+</style>
 </head>
 
 <body>
@@ -25,7 +31,7 @@
       <div class ="banner text-center">
         <a href = "js/myMap.html"><img src="mapBanner.png" class="img-responsive center-block"></a>
       </div> <br>
-      <div class="col-md-2">
+      <div class="col-md-5">
         <div class="well">
           <h5>Select a State:</h5>
           <select id="selDataset" onchange="optionChanged(this.value)"></select>
@@ -33,7 +39,7 @@
       <div class="col-md-5">
         <div id="bar"></div>
       </div>
-      <div class="col-md-5">
+      <div class="col-md-12">
         <div id="pie"></div>
       </div>
     </div>
