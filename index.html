@@ -10,9 +10,48 @@
   <script src="http://d3js.org/d3.v7.min.js"></script>
   <script src="https://cdn.plot.ly/plotly-2.27.0.min.js" charset="utf-8"></script>
   <style>
-    #bar, #pie {
-        width: 1100px; /* Adjust width as needed */
-        height: 600px; /* Adjust height as needed */
+   body{
+      background-color: black;
+      color: white;
+   }
+   .jumbotron{
+      background-color:steelblue;
+   }
+   .well{
+      max-width: 170px;
+      background-color: steelblue;
+      margin: 10px;
+    }
+    #selDataset{
+      color:black;
+    }
+    .legend{
+      float: right;
+    }
+    .city{
+      width: 1px;
+      height: 18px;
+      background-color:rgb(75,0,130);
+    }
+    .suburb{
+      width: 1px;
+      height: 18px;
+      background-color:rgb(0,0,255);
+    }
+    .town{
+      width: 1px;
+      height: 18px;
+      background-color:rgb(8,143,143);
+    }
+    .rural{
+      width: 1px;
+      height: 18px;
+      background-color:rgb(0,255,0);
+    }
+   #bar, #pie {
+        width: 1000px; 
+        height: 600px; 
+        margin: 20px;
     }
 </style>
 </head>
@@ -31,11 +70,19 @@
       <div class ="banner text-center">
         <a href = "js/myMap.html"><img src="mapBanner.png" class="img-responsive center-block"></a>
       </div> <br>
-      <div class="col-md-5">
+      <div class="col-md-12">
         <div class="well">
-          <h5>Select a State:</h5>
+          <h4>Select a State:</h4>
           <select id="selDataset" onchange="optionChanged(this.value)"></select>
-      </div>
+        </div>
+       <div class="legend">
+          <h4>Legend:</h4>
+          <ul class="city">City</ul>  
+          <ul class="suburb">Suburb</ul>    
+          <ul class="town">Town</ul>  
+          <ul class="rural">Rural</ul>
+        </div>
+      <div>
       <div class="col-md-5">
         <div id="bar"></div>
       </div>

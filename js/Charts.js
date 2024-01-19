@@ -73,9 +73,7 @@ function optionChanged(selectedState)
              }
         }
     }
-    //console.log(Revenues);
     
-
      // Sourced from a Stack Overflow board to sort the dictionary by the key (revenue) values 
      var revSort = Object.keys(Revenues).map(function(key) {
         return [key, Revenues[key]];
@@ -89,7 +87,6 @@ function optionChanged(selectedState)
     let top10 = revSort.slice(0,10);
     let top10Revenues = top10.map(entry => entry[1]);
     var top10Names = top10.map(entry => entry[0]);
-    //console.log(top10Names);
     
     let count = [];
     let categories = [];
@@ -97,18 +94,20 @@ function optionChanged(selectedState)
         categories.push(key);
         count.push(typeCount[key]);
     }
-    //console.log(count);
+
     //Runs the BarChart function, which displays a new plot for each new selection on the dropdown menu
     refreshBarChart(top10Revenues, top10Names);
+    //Runs the PieChart function, which displays a new plot for each new selection on the dropdown menu
     refreshPieChart(count, categories);
 }
 
 function BarColor(top10Names)
 {
-
+  //Create variables to get the NCES Locale Codes and the store the colors that correlate with each state's Top10
   let NCES;
   let colors =[];
 
+  //Loop through the array of Top10 Museum Names and the JSON file to find the Locale Code for each item in the array
   for(var i=0; i<top10Names.length; i++)
   {
     for(let j=0; j<data.length; j++)
@@ -118,24 +117,26 @@ function BarColor(top10Names)
         NCES = data[j].Locale_Code;
       }
     }
-  
+
+  //Assign a specific color to each item based on the Locale Code
   if(NCES == 1)
   {
-    colors.push('rgb(0,0,0)');
+    colors.push('rgb(75,0,130)');
   } 
   else if(NCES == 2)
   {
-    colors.push('rgb(158,202,225)');
+    colors.push('rgb(0,0,255)');
   }
   else if(NCES==3)
   {
-    colors.push('rgba(58,200,225,.5)');
+    colors.push('rgb(8,143,143)');
   }
   else
   {
-    colors.push('rgb(0,128,0)');
+    colors.push('rgb(0,255,0)');
   }
 }
+
 return colors;
 
 }
@@ -143,9 +144,8 @@ return colors;
 
 function refreshBarChart(top10Revenues, top10Names)
 {
-  //console.log(top10Names);
+  //Stores the BarColor function, which dynamically applies colors to individual bars on the chart based on Locale
   var colour = BarColor(top10Names);
-  //console.log(color);
     var data = [{
         y: top10Revenues, 
           x: top10Names,
@@ -165,13 +165,15 @@ function refreshBarChart(top10Revenues, top10Names)
 
     var layout = {
         title: 'Visitors Top 10',
-        showlegend: false
+        plot_bgcolor: 'rgb(173,216,230)',
+        paper_bgcolor: 'rgb(173,216,230)'
       };
 
     //Displays the Bar Chart 
     Plotly.newPlot('bar', data, layout, {displayModeBar: true});
 }
 
+//The code below was sourced from the PLotly documentation for Pie charts.
 function refreshPieChart(count, categories)
 {
     var data = [{
@@ -181,7 +183,9 @@ function refreshPieChart(count, categories)
       }];
       
       var layout = {
-        title: 'Museum Type Breakdown'
+        title: 'Museum Type Breakdown',
+        paper_bgcolor: 'rgb(173,216,230)',
+
       };
       Plotly.newPlot('pie', data, layout, {displayModeBar: true});
 }
