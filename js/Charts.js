@@ -168,10 +168,17 @@ function refreshBarChart(top10Revenues, top10Names)
         plot_bgcolor: 'rgb(173,216,230)',
         paper_bgcolor: 'rgb(173,216,230)'
       };
+    
+    //Refreshes the animation to prepare for a new chart
+    d3.select('#bar').classed('animate__animated', false).classed('animate__tada', false);
+
 
     //Displays the Bar Chart 
     Plotly.newPlot('bar', data, layout, {displayModeBar: true});
-}
+
+    //Calls the nimation on the newly displayed chart 
+    d3.select('#bar').classed('animate__animated', true).classed('animate__tada', true);
+  }
 
 //The code below was sourced from the PLotly documentation for Pie charts.
 function refreshPieChart(count, categories)
@@ -187,6 +194,14 @@ function refreshPieChart(count, categories)
         paper_bgcolor: 'rgb(173,216,230)',
 
       };
+      //Refreshes the animation to prepare for a new chart
+      d3.select('#pie').classed('animate__animated', false).classed('animate__tada', false);
+      
+      //Displays the pie chart 
       Plotly.newPlot('pie', data, layout, {displayModeBar: true});
+      
+      //Calls the nimation on the newly displayed chart 
+      d3.select('#pie').classed('animate__animated', true).classed('animate__tada', true);
+
 }
   
