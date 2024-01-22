@@ -11,11 +11,7 @@ d3.json(museumData).then(
         // save the data into a variable
         let museums = data; 
                                          
-        // create the map object
-        //let myMap = L.map("map", {
-            //center: [41.4925, -99.9018],
-            //zoom: 4
-        //});
+        
         
         // create the tile layers
         let tile1 = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -77,14 +73,14 @@ d3.json(museumData).then(
         
         }
         
-            // make an object with our base maps
+            // make an object with the tile layers
             let baseMaps = {
                 "View 01": tile1,
                 "View 02": tile2,
                 "View 03": tile3
             };
     
-            // make an object for the overlays (marker layer)
+            // make an object for marker layers
             let overlayMaps = {
                 "Museums": museumMarkers
             };
@@ -100,7 +96,6 @@ d3.json(museumData).then(
             L.control.layers(baseMaps, overlayMaps, {
                 collapsed: false
             }).addTo(myMap);
-        // add the cluster marker group to the map
-        //myMap.addLayer(museumMarkers);
+        
     }
 )
