@@ -65,7 +65,7 @@ d3.json(museumData).then(
             .bindPopup("<b>Museum Name: </b>" + currentMuseum.Museum_Name + "<br>" +
             "<b>Museum Type: </b>" + currentMuseum.Museum_Type + "<br>" +
             "<b>Locale: </b>" + localeCode() + "<br>" +
-            "<b>Revenue </b>$" + currentMuseum.Revenue);
+            "<b>Revenue: </b>$" + currentMuseum.Revenue);
 
             // add the marker to the cluster marker group
             museumMarkers.addLayer(museumMarker);
