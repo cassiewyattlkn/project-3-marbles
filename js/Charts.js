@@ -100,7 +100,6 @@ function optionChanged(selectedState)
     refreshBarChart(top10Revenues, top10Names);
     //Runs the PieChart function, which displays a new plot for each new selection on the dropdown menu
     refreshPieChart(count, categories);
-    refreshDoughnutChart(count, categories);
 
 }
 
@@ -205,70 +204,7 @@ function refreshPieChart(count, categories)
       
       //Calls the animation on the newly displayed chart 
       d3.select('#pie').classed('animate__animated', true).classed('animate__tada', true);
-    }
-    function refreshDoughnutChart(count, categories) {
-      // Get \
-      var ctxDoughnut = document.getElementById("doughnutChart").getContext('2d');
-      //background color
-      ctxDoughnut.canvas.style.backgroundColor = 'rgb(173, 216, 230)';
-
-      // Destroy the existing chart to clear previous data
-      if (window.myDoughnutChart) {
-          window.myDoughnutChart.destroy();
-      }
-      // Create a new doughnut chart
-      window.myDoughnutChart = new Chart(ctxDoughnut, {
-        type: 'doughnut',
-        data: {
-            labels: categories,
-            datasets: [{
-                data: count,
-                backgroundColor: generateColors(count.length),
-            }]
-        },
-        options: {
-          cutoutPercentage: 70, // Adjust 
-          backgroundColor: 'rgb(173, 216, 230)',
-          elements: {
-              center: {
-                  color: 'rgb(173, 216, 230)',
-                  text: 'Museum Type Distribution',
-                  fontStyle: 'Arial', // font style 
-                  sidePadding: 20 // Adjust 
-              }
-    },
-    cutoutPercentage: 70, // Adjust the cutout percentage as needed
-    backgroundColor: 'rgb(173, 216, 230)',
-             elements: {
-              center: {
-                  color: 'rgb(173, 216, 230)'
-                }
-              },
-              // Add animation properties
-              animation: {
-                  animateRotate: true,
-                  animateScale: true
-              },
-              // Set the width and height here
-              //maintainAspectRatio: false,
-             // responsive: true
-          }
-      });
-  
-      // Apply the animation classes
-      d3.select('#doughnutChart').classed('animate__animated', true).classed('animate__tada', true);
-  }
-           
-  
-  // Function to generate random colors
-  function generateColors(numColors) {
-      var colors = [];
-      for (var i = 0; i < numColors; i++) {
-          // Generate or set colors 
-          colors.push('rgb(' + Math.floor(Math.random() * 256) + ',' + Math.floor(Math.random() * 256) + ',' + Math.floor(Math.random() * 256) + ')');
-      }
-      return colors;
-  }
+}
   
      
 
